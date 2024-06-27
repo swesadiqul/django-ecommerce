@@ -107,7 +107,7 @@
                                 <i class="fa-solid fa-bars"></i>
                             </span>
                         </button>
-                        <a href="index.html" class="web-logo nav-logo">
+                        <a href="/" class="web-logo nav-logo">
                             <img src="{% static 'assets/images/logo/1.png' %}" class="img-fluid blur-up lazyload" alt="">
                         </a>
 
@@ -248,6 +248,7 @@
 
                                     <div class="onhover-div onhover-div-login">
                                         <ul class="user-box-name">
+                                            {% if not request.user.is_authenticated %}
                                             <li class="product-box-contain">
                                                 <i></i>
                                                 <a href="{% url 'signin' %}">Log In</a>
@@ -256,10 +257,17 @@
                                             <li class="product-box-contain">
                                                 <a href="{% url 'signup' %}">Register</a>
                                             </li>
-
+                                            {% else %}
+                                            <li class="product-box-contain">
+                                                <a href="{% url 'user_dashboard' %}">Dashboard</a>
+                                            </li>
+                                            <li class="product-box-contain">
+                                                <a href="{% url 'signout' %}">Logout</a>
+                                            </li>
                                             <li class="product-box-contain">
                                                 <a href="{% url 'forgot_password' %}">Forgot Password</a>
                                             </li>
+                                            {% endif %}
                                         </ul>
                                     </div>
                                 </li>
@@ -697,7 +705,7 @@
 
                                             <ul class="dropdown-menu">
                                                 <li>
-                                                    <a class="dropdown-item" href="index.html">Kartshop</a>
+                                                    <a class="dropdown-item" href="/">Kartshop</a>
                                                 </li>
                                                 <li>
                                                     <a class="dropdown-item" href="index-2.html">Sweetshop</a>
